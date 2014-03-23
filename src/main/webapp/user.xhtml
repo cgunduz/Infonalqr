@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<f:view>
+
+    <h:head>
+        <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf8"/>
+    </h:head>
+
+
+    <h:body id="templateBody">
+
+        <h1 style="color: #333;font-weight: normal;font-family: 'Orienta', sans-serif;">Sample User Managment Page For N11</h1>
+
+        <h:form prependId="false">
+
+            <h:panelGrid columns="4" id="operationBtnsGrid">
+
+                <p:commandButton value="New" icon="ui-icon-plusthick" onclick="newDialog.show();"/>
+
+                <p:commandButton value="Update" update="dataTable" icon="ui-icon-pencil"
+                                 disabled="#{userController.userModels.selectedUser.id==null}"
+                                 onclick="updateDialog.show();"/>
+
+                <p:commandButton id="Delete" value="Delete" update="dataTable" onclick="confirmation.show()"
+                                 icon="ui-icon-trash" disabled="#{userController.userModels.selectedUser.id==null}"/>
+
+            </h:panelGrid>
+
+            <p:dataTable id="dataTable"
+                         var="user"
+                         value="#{userController.findAll()}"
+                         rowKey="#{user.id}"
+                         selectionMode="single"
+                         selection="#{userController.userModels.selectedUser}">
+
+
+                <f:facet name="header">
+                    <h:outputText value="User List"/>
+                </f:facet>
+
+                <p:ajax event="rowSelect" update="@(form)"/>
+
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Name"/>
+                    </f:facet>
+                    <h:outputText value="#{user.name}"/>
+                </p:column>
+
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Lastname"/>
+                    </f:facet>
+                    <h:outputText value="#{user.lastname}"/>
+                </p:column>
+
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Phone Number"/>
+                    </f:facet>
+                    <h:outputText value="#{user.phoneNumber}"/>
+                </p:column>
+
+            </p:dataTable>
+        </h:form>
+
+        <p:dialog header="Add New User" widgetVar="newDialog" modal="true">
+            <h:form prependId="false">
+                <p:panelGrid columns="2">
+
+                    <h:outputLabel for="new_name" value="Name: "/>
+                    <p:inputText id="new_name" required="true" value="#{userController.userModels.newUser.name}"/>
+
+                    <h:outputLabel for="new_lastname" value="Lastname: "/>
+                    <p:inputText id="new_lastname" required="true"
+                                 value="#{userController.userModels.newUser.lastname}"/>
+
+                    <h:outputLabel for="new_phoneNumber" value="Phone number: "/>
+                    <p:inputMask id="new_phoneNumber" value="#{userController.userModels.newUser.phoneNumber}"
+                                 mask="(999) 999-9999"/>
+
+                </p:panelGrid>
+
+                <!--
+                <p:panelGrid columns="1">
+
+                    <p:captcha label="Captcha" language="tr"/>
+
+                </p:panelGrid>
+                -->
+
+                <p:commandButton id="saveNewButton" actionListener="#{userController.addNewUser}"
+                                 update="@(form), @(#newmessages)" oncomplete="newDialog.hide()" value="Save" icon="ui-icon-check"/>
+                <p:commandButton value="Cancel" onclick="newDialog.hide()" type="button" update="@(form)" icon="ui-icon-close"/>
+
+                <p:messages id="newmessages" autoUpdate="true" showDetail="true"/>
+            </h:form>
+        </p:dialog>
+
+
+        <p:dialog header="Update User" widgetVar="updateDialog" modal="true">
+            <h:form prependId="false">
+                <p:panelGrid columns="2">
+
+                    <h:outputLabel for="update_name" value="Name: "/>
+                    <p:inputText id="update_name" required="true"
+                                 value="#{userController.userModels.selectedUser.name}"/>
+
+                    <h:outputLabel for="update_lastname" value="Lastname: "/>
+                    <p:inputText id="update_lastname" required="true"
+                                 value="#{userController.userModels.selectedUser.lastname}"/>
+
+                    <h:outputLabel for="update_phoneNumber" value="Phone number: "/>
+                    <p:inputMask id="update_phoneNumber" value="#{userController.userModels.selectedUser.phoneNumber}"
+                                 mask="(999) 999-9999"/>
+
+                </p:panelGrid>
+
+                <p:commandButton id="updateSelectedButton" actionListener="#{userController.updateUser}"
+                                 update="@(form), @(#updatemessages)" oncomplete="updateDialog.hide()" value="Save" icon="ui-icon-check"/>
+                <p:commandButton value="Cancel" onclick="updateDialog.hide()" type="button" update="@(form)" icon="ui-icon-close"/>
+
+                <p:messages id="updatemessages" autoUpdate="true" showDetail="true"/>
+            </h:form>
+        </p:dialog>
+
+
+        <p:confirmDialog id="confirmDialog" message="Are you sure you want to delete ?"
+                         header="Deletion Confirmation" severity="alert" widgetVar="confirmation">
+            <h:form prependId="false">
+                <p:commandButton id="confirm" value="Yes" oncomplete="confirmation.hide()"
+                                 actionListener="#{userController.deleteUser}"
+                                 update="@(form), @(#deletemessages)"/>
+                <p:commandButton id="decline" value="No" onclick="confirmation.hide()" type="button"/>
+                <p:messages id="deletemessages" autoUpdate="true" showDetail="true"/>
+            </h:form>
+        </p:confirmDialog>
+
+
+        <p:ajaxStatus style="width:64px;height:64px;position:fixed;right:5px;bottom:5px">
+            <f:facet name="start">
+                <p:graphicImage value="/images/ajax-loader.gif"/>
+            </f:facet>
+
+            <f:facet name="complete">
+                <h:outputText value=""/>
+            </f:facet>
+        </p:ajaxStatus>
+
+    </h:body>
+</f:view>
+</html>

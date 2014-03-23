@@ -1,0 +1,22 @@
+Selam,
+
+Asagida göndermis oldugunuz problem setiyle ilgili notlarim ve adresi bulabilirsiniz. Kodu incelemeden önce notlarimi okumanizi rica ederim.
+
+- Cumartesi ve pazar sabahi çalistim fakat, baska projelerde baska zamanlarda yaptigim seyleri kullandigim oldu.
+
+- Projeyi çalistirirken local de mongo ve redis server larinin ayakta olmasi gerekiyor. Back-end tarafina istekli oldugum için redis konusunda insiyatif kullandim.
+
+- App server'in farketmemesi lazim ama ben tomcat 7 de çalistim.
+
+- Ajax ve primefaces altinda gelen captcha tag i çok iyi konusmuyor -> https://code.google.com/p/primefaces/issues/detail?id=1642 
+Zaman alacagini öngörüp simdilik comment out ettim, sizin için bir deal breaker teskil ederse en erken sali aksami tekrar ilgilenebilirim. 
+
+- Genel olarak kod kalitesine, proje yapisi, unit testleri gibi konulara önem verdim. Temel olarak baska projelere template olabilecek bir yapi kurmaya çalistim. Her türlü yorum ve geri dönüsü merakla beklerim.
+
+Simdilik benden bu kadar.
+Github : 
+
+Kolay gelsin,
+Iyi çalismalar.
+--
+Cem
