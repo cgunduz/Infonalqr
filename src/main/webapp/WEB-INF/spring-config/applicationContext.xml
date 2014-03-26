@@ -13,7 +13,6 @@ http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
     <context:annotation-config />
 	<context:component-scan base-package="com.cemgunduz.*" />
 
-    <import resource="spring-selenium-config.xml"/>
     <import resource="spring-redis-config.xml"/>
     <aop:aspectj-autoproxy />
 

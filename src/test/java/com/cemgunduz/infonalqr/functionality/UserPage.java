@@ -6,6 +6,7 @@ import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
@@ -22,10 +23,6 @@ import java.util.List;
 public class UserPage {
 
     @Autowired
-    @Qualifier(value = "FirefoxDriver")
-    private WebDriver firefoxDriver;
-
-    @Autowired
     UserService userService;
 
     private static final String SITE_PATH = "localhost:8080";
@@ -36,6 +33,8 @@ public class UserPage {
     @Test
     public void exampleFunctionalityTest()
     {
+        WebDriver firefoxDriver = new FirefoxDriver();
+
         firefoxDriver.get(SITE_PATH);
 
         WebElement webElement = firefoxDriver.findElement(By.id("titleLarge"));
