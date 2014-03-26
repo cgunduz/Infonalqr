@@ -29,7 +29,7 @@ public class UserServices {
 
 
     @Test
-    public void userServiceExampleTest()
+    public void userServiceExampleUnitTest()
     {
         long totalCount = userMongoDao.count();
 
@@ -40,6 +40,24 @@ public class UserServices {
         userService.addUser(testUser);
 
         assert (totalCount + 1) == userMongoDao.count();
+    }
+
+    @Test
+    public void userServiceExampleUnitTestWithIntegrityCheck()
+    {
+        User testUser = new User();
+        testUser.setLastname("TestLastName");
+        testUser.setName("TestName");
+        testUser.setPhoneNumber("5395970000");
+        userService.addUser(testUser);
+
+        User detachedTestUser = userMongoDao.findOne(testUser.getId());
+
+        assert detachedTestUser.getName().equals(testUser.getName());
+        assert detachedTestUser.getLastname().equals(testUser.getLastname());
+        assert detachedTestUser.getPhoneNumber().equals(testUser.getPhoneNumber());
+
+        userService.deleteUser(testUser.getId());
     }
 
     private String randomStringGen()
