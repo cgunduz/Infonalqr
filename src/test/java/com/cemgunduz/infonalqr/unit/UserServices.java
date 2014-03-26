@@ -32,7 +32,6 @@ public class UserServices {
     public void userServiceExampleTest()
     {
         long totalCount = userMongoDao.count();
-        System.out.println(totalCount);
 
         User testUser = new User();
         testUser.setLastname(randomStringGen());
