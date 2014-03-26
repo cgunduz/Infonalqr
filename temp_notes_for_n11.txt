@@ -1,0 +1,18 @@
+Selam,
+
+Hüseyin bey in isteği üzerine kendisine göndermiş olduğum problem setiyle ilişkili notlarımı burada da geçici bir süreliğine paylaşıyorum:
+
+- Cumartesi ve pazar sabahı çalıştım fakat, başka projelerde başka zamanlarda yaptığım şeyleri kullandığım oldu.
+
+- Projeyi çalıştırırken local de mongo ve redis server larinin ayakta olması gerekiyor. Back-end tarafına istekli olduğum için redis konusunda inisiyatif kullandım. Mongo auto generated id leri dikkate almama sebebim ikinci cevap -> http://stackoverflow.com/questions/6645277/should-i-implement-auto-incrementing-in-mongodb/14433131#14433131
+
+- App server'in farketmemesi lazım ama ben tomcat 7 de çalıştım.
+
+- Ajax ve primefaces altında gelen captcha tag i çok iyi konuşmuyor -> https://code.google.com/p/primefaces/issues/detail?id=1642
+Zaman alacağını öngörüp şimdilik comment out ettim, sizin için bir deal breaker teşkil ederse en erken salı aksamı tekrar ilgilenebilirim.
+
+- Genel olarak kod kalitesine, proje yapısı, unit testleri gibi konulara önem verdim. Temel olarak baska projelere template olabilecek bir yapı kurmaya çalıştım. Her türlü yorum ve geri dönüşü merakla beklerim.
+
+Görüşmek dileğiyle
+--
+Cem
