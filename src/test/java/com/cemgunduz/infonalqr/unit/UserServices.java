@@ -1,4 +1,4 @@
-package com.cemgunduz.infonalqr;
+package com.cemgunduz.infonalqr.unit;
 
 import com.cemgunduz.infonalqr.persistence.dao.UserMongoDao;
 import com.cemgunduz.infonalqr.persistence.entity.User;
@@ -18,7 +18,7 @@ import java.util.Random;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:spring-config/applicationContext.xml"})
-public class AppTest {
+public class UserServices {
 
     @Autowired
     UserService userService;
@@ -26,6 +26,7 @@ public class AppTest {
     @Autowired
     @SuppressWarnings("all")
     UserMongoDao userMongoDao;
+
 
     @Test
     public void userServiceExampleTest()

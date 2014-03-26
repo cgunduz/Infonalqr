@@ -14,13 +14,13 @@
 
     <h:body id="templateBody">
 
-        <h1 style="color: #333;font-weight: normal;font-family: 'Orienta', sans-serif;">Sample User Managment Page For N11</h1>
+        <h1 id="titleLarge" style="color: #333;font-weight: normal;font-family: 'Orienta', sans-serif;">Sample User Managment Page For N11</h1>
 
         <h:form prependId="false">
 
             <h:panelGrid columns="4" id="operationBtnsGrid">
 
-                <p:commandButton value="New" icon="ui-icon-plusthick" onclick="newDialog.show();"/>
+                <p:commandButton id = "addUserButton" value="New" icon="ui-icon-plusthick" onclick="newDialog.show();"/>
 
                 <p:commandButton value="Update" update="dataTable" icon="ui-icon-pencil"
                                  disabled="#{userController.userModels.selectedUser.id==null}"
